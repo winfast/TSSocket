@@ -63,10 +63,10 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9283EEB19DDB5CE06A241818 /* Pods_TSSocket_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TSSocket_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B8039E27A897D3FDB10107 /* Pods-TSSocket_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSSocket_Example.debug.xcconfig"; path = "Target Support Files/Pods-TSSocket_Example/Pods-TSSocket_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9C800066EFF296116872E868 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		A5498010FBDE41FA22DC1ED2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		9C800066EFF296116872E868 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A5498010FBDE41FA22DC1ED2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CA397F9E77911B80BD7DB485 /* Pods-TSSocket_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSSocket_Example.release.xcconfig"; path = "Target Support Files/Pods-TSSocket_Example/Pods-TSSocket_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F30BA3601E5737372567E320 /* TSSocket.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TSSocket.podspec; path = ../TSSocket.podspec; sourceTree = "<group>"; };
+		F30BA3601E5737372567E320 /* TSSocket.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TSSocket.podspec; path = ../TSSocket.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +193,6 @@
 				72801624F17C2FAF5C4DDB49 /* Pods-TSSocket_Tests.debug.xcconfig */,
 				7E907ACBB8C343D042F9D5BA /* Pods-TSSocket_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				D33E46F63F581964A688225F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +248,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = QinChuancheng;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 579P9269QX;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -258,6 +261,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -324,10 +328,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TSSocket_Example/Pods-TSSocket_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/TSSocket/TSSocket.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TSSocket.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +361,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D33E46F63F581964A688225F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TSSocket_Tests/Pods-TSSocket_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TSSocket_Tests/Pods-TSSocket_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -494,6 +518,7 @@
 			baseConfigurationReference = 95B8039E27A897D3FDB10107 /* Pods-TSSocket_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 579P9269QX;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSSocket/TSSocket-Prefix.pch";
 				INFOPLIST_FILE = "TSSocket/TSSocket-Info.plist";
@@ -510,6 +535,7 @@
 			baseConfigurationReference = CA397F9E77911B80BD7DB485 /* Pods-TSSocket_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 579P9269QX;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSSocket/TSSocket-Prefix.pch";
 				INFOPLIST_FILE = "TSSocket/TSSocket-Info.plist";

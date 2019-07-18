@@ -1,0 +1,6 @@
+framework module TSSocket {
+  umbrella header "TSSocket-umbrella.h"
+
+  export *
+  module * { export * }
+}

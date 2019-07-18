@@ -1,6 +1,6 @@
 use_frameworks!
 
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'TSSocket_Example' do
   pod 'TSSocket', :path => '../'
@@ -8,6 +8,6 @@ target 'TSSocket_Example' do
   target 'TSSocket_Tests' do
     inherit! :search_paths
 
-    
+  pod 'CocoaAsyncSocket'
   end
 end
