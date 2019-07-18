@@ -34,7 +34,7 @@ static  NSLock        *sendCommandLock; //发送数据锁
     return tcpSocket;
 }
 
-- (BOOL)connectGalanzSmartDevice:(NSString *)ipAddress port:(NSInteger)port
+- (BOOL)connectTCPServer:(NSString *)ipAddress port:(NSInteger)port
 {
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
     self.asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:mainQueue];
