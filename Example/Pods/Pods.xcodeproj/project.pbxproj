@@ -11,6 +11,8 @@
 		0459CE6122E00C4E00D950BE /* TSBaseSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459CE5F22E00C4E00D950BE /* TSBaseSocket.m */; };
 		0459CE6422E00DA300D950BE /* TSTcpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0459CE6222E00DA300D950BE /* TSTcpSocket.h */; };
 		0459CE6522E00DA300D950BE /* TSTcpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459CE6322E00DA300D950BE /* TSTcpSocket.m */; };
+		0459CE6922E013C900D950BE /* TSEncryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 0459CE6722E013C900D950BE /* TSEncryption.h */; };
+		0459CE6A22E013C900D950BE /* TSEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459CE6822E013C900D950BE /* TSEncryption.m */; };
 		0EC1806437F66CC12F06DD7ACD1FBA4A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6B030D0E7DA0B32C45F2CA5EF0AF7 /* Security.framework */; };
 		14703875367641811BD5FE75ACD67C96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E484F037B807D7B1ECF003384573173D /* Foundation.framework */; };
 		1F292B5410B16DBF60D1F47A48216622 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D9393A92083DA9D32F56244F48A39 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -75,6 +77,8 @@
 		0459CE5F22E00C4E00D950BE /* TSBaseSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TSBaseSocket.m; path = TSSocket/Classes/TSBaseSocket.m; sourceTree = "<group>"; };
 		0459CE6222E00DA300D950BE /* TSTcpSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSTcpSocket.h; path = TSSocket/Classes/TSTcpSocket.h; sourceTree = "<group>"; };
 		0459CE6322E00DA300D950BE /* TSTcpSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TSTcpSocket.m; path = TSSocket/Classes/TSTcpSocket.m; sourceTree = "<group>"; };
+		0459CE6722E013C900D950BE /* TSEncryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSEncryption.h; path = TSSocket/Classes/TSEncryption.h; sourceTree = "<group>"; };
+		0459CE6822E013C900D950BE /* TSEncryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TSEncryption.m; path = TSSocket/Classes/TSEncryption.m; sourceTree = "<group>"; };
 		062487DB356B6B80AA12FB7C8F5C7352 /* TSSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12D2BC450C4A6B05397075508D93D9CE /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CocoaAsyncSocket.modulemap; sourceTree = "<group>"; };
 		13CA888ACCE3BFE9D590BA82128FA172 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				0459CE5F22E00C4E00D950BE /* TSBaseSocket.m */,
 				0459CE6222E00DA300D950BE /* TSTcpSocket.h */,
 				0459CE6322E00DA300D950BE /* TSTcpSocket.m */,
+				0459CE6722E013C900D950BE /* TSEncryption.h */,
+				0459CE6822E013C900D950BE /* TSEncryption.m */,
 			);
 			name = TSSocket;
 			path = ../..;
@@ -362,6 +368,7 @@
 				0459CE6422E00DA300D950BE /* TSTcpSocket.h in Headers */,
 				DF77DA76BD5962EE7DD383126BBBBAC8 /* GCDAsyncSocket.h in Headers */,
 				411EE6BA92B228BF3497175C14FC7A90 /* GCDAsyncUdpSocket.h in Headers */,
+				0459CE6922E013C900D950BE /* TSEncryption.h in Headers */,
 				0459CE6022E00C4E00D950BE /* TSBaseSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +523,7 @@
 				6C237B7AA6F4A2DD17CA05EB90C83362 /* CocoaAsyncSocket-dummy.m in Sources */,
 				1F292B5410B16DBF60D1F47A48216622 /* GCDAsyncSocket.m in Sources */,
 				BF0E4454B28437897BC092AE02CD0C13 /* GCDAsyncUdpSocket.m in Sources */,
+				0459CE6A22E013C900D950BE /* TSEncryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
