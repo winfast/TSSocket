@@ -10,7 +10,7 @@
 
 @implementation TSBaseSocket
 
-- (BOOL)connectGalanzSmartDevice:(NSString *)ipAddress port:(NSInteger)port
+- (BOOL)connectTCPServer:(NSString *)ipAddress port:(NSInteger)port
 {
     return YES;
 }
