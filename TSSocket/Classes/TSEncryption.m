@@ -173,4 +173,177 @@
     return hexData;
 }
 
++ (NSData *)AES128EncryptDataWithData:(NSData *)EncryData secretKey:(NSString *)secretKey iv:(NSString *)iv {
+    char keyPtr[kCCKeySizeAES128+1];
+    memset(keyPtr, 0, sizeof(keyPtr));
+    [secretKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+    
+    char ivPtr[kCCKeySizeAES128+1];
+    memset(ivPtr, 0, sizeof(ivPtr));
+    [iv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
+    
+
+    /*
+    这里设置的参数ios默认为CBC加密方式，如果需要其他加密方式如ECB，在kCCOptionPKCS7Padding这个参数后边加上kCCOptionECBMode，即kCCOptionPKCS7Padding | kCCOptionECBMode，但是记得修改上边的偏移量，因为只有CBC模式有偏移量之说
+    */
+    size_t bufferSize = [EncryData length] + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    memset(buffer, 0, bufferSize);
+    size_t numBytesCrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+                                          kCCAlgorithmAES,
+                                          kCCOptionPKCS7Padding,               //No padding
+                                          keyPtr,
+                                          kCCKeySizeAES128,
+                                          ivPtr,
+                                          EncryData.bytes,
+                                          EncryData.length,
+                                          buffer,
+                                          bufferSize,
+                                          &numBytesCrypted);
+    
+    if (cryptStatus == kCCSuccess) {
+        NSData *resultData = [NSData dataWithBytesNoCopy:buffer length:numBytesCrypted];
+        return resultData;
+    }
+    free(buffer);
+    return nil;
+}
+
++ (NSData *)AES128DecryptDataWithData:(NSData *)DecryData secretKey:(NSString *)secretKey iv:(NSString *)iv {
+    char keyPtr[kCCKeySizeAES128 + 1];
+    memset(keyPtr, 0, sizeof(keyPtr));
+    [secretKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+   
+    char ivPtr[kCCKeySizeAES128+1];
+    memset(ivPtr, 0, sizeof(ivPtr));
+    [iv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
+    
+    NSUInteger dataLength = [DecryData length];
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    memset(buffer, 0, bufferSize);
+    
+    /*
+    这里设置的参数ios默认为CBC加密方式，如果需要其他加密方式如ECB，在kCCOptionPKCS7Padding这个参数后边加上kCCOptionECBMode，即kCCOptionPKCS7Padding | kCCOptionECBMode，但是记得修改上边的偏移量，因为只有CBC模式有偏移量之说
+    */
+    size_t numBytesCrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
+                                          kCCAlgorithmAES128,
+                                          kCCOptionPKCS7Padding,
+                                          keyPtr,
+                                          kCCBlockSizeAES128,
+                                          ivPtr,
+                                          [DecryData bytes],
+                                          dataLength,
+                                          buffer,
+                                          bufferSize,
+                                          &numBytesCrypted);
+    if (cryptStatus == kCCSuccess) {
+        NSData *resultData = [NSData dataWithBytesNoCopy:buffer length:numBytesCrypted];
+        return resultData;
+    }
+    free(buffer);
+    return nil;
+}
+
+/**
+ * Base64编码
+ */
++ (NSData *)base64Encode:(NSData *)data {
+    return [data base64EncodedDataWithOptions:0];
+}
+ 
+/**
+ * Base64解码
+ */
++ (NSData *)base64Dencode:(NSData *)data {
+    if (!data) {
+        return nil;
+    }
+    return [[NSData alloc] initWithBase64EncodedData:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
+}
+
+
++ (NSData *)AES256EncryptWithData:(NSData *)EncryData secretKey:(NSString *)secretKey{   //加密
+    char keyPtr[kCCKeySizeAES256+1];
+
+    bzero(keyPtr, sizeof(keyPtr));
+
+    [secretKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+
+    NSUInteger dataLength = [EncryData length];
+
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+
+    void *buffer = malloc(bufferSize);
+
+    size_t numBytesEncrypted = 0;
+
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES128,
+
+                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
+
+                                          keyPtr, 32,
+
+                                          NULL,
+
+                                          [EncryData bytes], dataLength,
+
+                                          buffer, bufferSize,
+
+                                          &numBytesEncrypted);
+
+    if (cryptStatus == kCCSuccess) {
+
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
+
+    }
+
+    free(buffer);
+
+    return nil;
+}
+
+
++ (NSData *)AES256DecryptWithData:(NSData *)DecryptData secretKey:(NSString *)secretKey {    //解密
+    char keyPtr[kCCKeySizeAES256+1];
+
+    bzero(keyPtr, sizeof(keyPtr));
+
+    [secretKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+
+    NSUInteger dataLength = [DecryptData length];
+
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+
+    void *buffer = malloc(bufferSize);
+
+    size_t numBytesDecrypted = 0;
+
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128,
+
+                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
+
+                                          keyPtr, 32,
+
+                                          NULL,
+
+                                          [DecryptData bytes], dataLength,
+
+                                          buffer, bufferSize,
+
+                                          &numBytesDecrypted);
+
+    if (cryptStatus == kCCSuccess) {
+
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesDecrypted];
+
+    }
+
+    free(buffer);
+
+    return nil;
+}
+
 @end

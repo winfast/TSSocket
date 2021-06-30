@@ -31,6 +31,31 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)AES128EncryptStringWithWithString:(NSString *)EncryStr;
 + (NSString *)AES128DecryptStringWithString:(NSString *)DecryStr;
 
+
+//CCB模式， 必须有向量
+
++ (NSData *)AES128EncryptDataWithData:(NSData *)EncryData secretKey:(NSString *)secretKey iv:(NSString *)iv;
+
+
++ (NSData *)AES128DecryptDataWithData:(NSData *)DecryData secretKey:(NSString *)secretKey iv:(NSString *)iv;
+
+
+/**
+ * Base64编码
+ */
++ (NSData *)base64Encode:(NSData *)data;
+ 
+/**
+ * Base64解码
+ */
++ (NSData *)base64Dencode:(NSData *)data;
+
+
+
++ (NSData *)AES256EncryptWithData:(NSData *)EncryData secretKey:(NSString *)secretKey;   //加密
+
++ (NSData *)AES256DecryptWithData:(NSData *)EncryData secretKey:(NSString *)secretKey;    //解密
+
 @end
 
 NS_ASSUME_NONNULL_END
